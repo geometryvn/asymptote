@@ -1,5 +1,4 @@
 import geometry;
-unitsize(1cm);
 
 arc g2arcX(point O, point A, point B){
 	circle c=circle(O,abs(O-A));
