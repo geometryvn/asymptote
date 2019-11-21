@@ -61,10 +61,3 @@ void g2r(point A, point B){
 	draw(ar[5]^^ar[6],3bp+1.2blue);
 	draw(ar[7],3bp+red);
 }
-
-real r=1.5;
-
-point A=(0,0); dot(Label("$A$",align=NW),A);
-point B=(r,0); dot(Label("$B$",align=NW),B);
-
-g2r(A,B);
