@@ -148,7 +148,7 @@ pair n9center(pair A, pair B, pair C){
 
 //Đường tròn Nine Point - Euler
 path n9circle(pair A, pair B, pair C){
-	pair N9=n9point(A,B,C);
+	pair N9=n9center(A,B,C);
 	return circle(N9,abs(N9-midpoint(B--C)));
 }
 
