@@ -142,7 +142,7 @@ pair gepoint(pair A, pair B, pair C){
 }
 
 //Nine Point Center N9
-pair n9point(pair A, pair B, pair C){
+pair n9center(pair A, pair B, pair C){
 	return midpoint(orthocenter(A,B,C)--center3p(A,B,C));
 }
 
