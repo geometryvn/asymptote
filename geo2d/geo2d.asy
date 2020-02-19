@@ -3,6 +3,10 @@
 //Quân.T nhóm Quán Hình. email: quanhinh9@gmail.com
 //https://www.facebook.com/groups/205466756603509/
 //http://asymptote.sourceforge.net/doc/index.html
+//www.piprime.fr/asymptote/
+//http://cgmaths.fr/cgFiles/Dem_Rapide.pdf
+//https://github.com/vectorgraphics/asymptote/blob/master/base/geometry.asy
+//https://github.com/vEnhance/dotfiles/blob/master/asy/olympiad.asy
 
 //Phép vị tự
 transform scale(pair center, real k){
