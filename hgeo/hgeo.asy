@@ -20,7 +20,7 @@ struct hgeo{
 	segment seg;
 }
 
-//hline: cung geodesic đ qua A, B. A, B phân biệt và không trùng hc.C
+//hline: cung geodesic đi qua A, B. A, B phân biệt và không trùng hc.C
 hgeo hline(point A, point B){
 	hgeo tmp;
 	if (hc.C @ line(A,B)==false){
@@ -36,6 +36,28 @@ hgeo hline(point A, point B){
 		tmp.finite=false;
 		point t[]=intersectionpoints(hc,line(A,B));
 		tmp.seg=segment(t[0],t[1]);
+	}
+	
+	return tmp;
+}
+
+//hsegment: đoạn geodesic đi qua A, B. A, B phân biệt và không trùng hc.C
+hgeo hsegment(point A, point B){
+	hgeo tmp;
+	
+	if (hc.C @ line(A,B)==false){
+		tmp.finite=true;
+		point P=inversion(hc)*A, mp=midpoint(P--A);
+		point j=intersectionpoint(bisector(A,B),perpendicular(mp,line(hc.C,A)));
+		circle cp=circle(j,abs(j-A));
+		
+		point M=midpoint(A--B);
+		point N=intersectionpoint(M--hc.C,cp);
+		if (N @ arc(cp,A,B)) tmp.ar= arc(cp,A,B);
+		else tmp.ar=arc(cp,B,A);	
+	} else {
+		tmp.finite=false;
+		tmp.seg=segment(A,B);
 	}
 	
 	return tmp;
