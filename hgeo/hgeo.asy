@@ -1,5 +1,6 @@
 //Hyperbolic geometry using the Poincaré disc model
 //Tran Quan 012020
+//Tham khảo: https://ium.mccme.ru/postscript/f10/geometry1-lect-7.pdf
 
 import geometry;
 
