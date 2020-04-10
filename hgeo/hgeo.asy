@@ -62,3 +62,52 @@ hgeo hsegment(point A, point B){
 	
 	return tmp;
 }
+
+//Đường tròn tâm A đi qua B
+circle hcircle(point A, point B){
+	point P=inversion(hc)*A;
+	point R=inversion(circle(A,P))*B;
+	point N=intersectionpoint(bisector(segment(B,R)),line(hc.C,A));
+	return circle(N,abs(N-B));
+}
+
+//Trung trực AB geodesic
+// Không xét trường hợp A == B, A@ hc, B @ hc
+hgeo hbisector(point A, point B){
+	circle cA=hcircle(A,B), cB=hcircle(B,A);
+	point p[]=intersectionpoints(cA,cB);
+	return hline(p[0],p[1]);
+}
+
+//Trung điểm của geodesic AB
+point hmidpoint(point A, point B){
+	point tmp;
+	hgeo lAB=hline(A,B), sAB=hbisector(A,B);
+	if (lAB.finite && sAB.finite) tmp=intersectionpoint(lAB.ar,sAB.ar);
+	if (lAB.finite && (sAB.finite==false)) tmp=intersectionpoints(lAB.ar,sAB.seg)[0];
+	
+	if ((lAB.finite==false) && sAB.finite) tmp=intersectionpoints(lAB.seg,sAB.ar)[0];
+	if ((lAB.finite==false) && (sAB.finite==false)) tmp=intersectionpoint(lAB.seg,sAB.seg);
+	
+	return tmp;
+}
+
+//Tâm đường tròn ngoại tiếp tam giác ABC.
+point hcenter(point A, point B, point C){
+	point tmp;
+	hgeo mCA=hbisector(C,A), mAB=hbisector(A,B);
+	if (mCA.finite & mAB.finite) tmp=intersectionpoint(mCA.ar,mAB.ar);
+	if (mCA.finite & (mAB.finite==false)) tmp=intersectionpoints(mCA.ar,mAB.seg)[0];
+	
+	if ((mCA.finite==false) & mAB.finite) tmp=intersectionpoints(mCA.seg,mAB.ar)[0];
+	
+	if ((mCA.finite==false) && (mAB.finite==false)) tmp=intersectionpoint(mCA.seg,mAB.seg);
+	
+	return tmp;
+}
+
+//Đường tròn ngoại tiếp tam giác ABC
+circle hcircle(point A, point B, point C){
+	return circle(A,B,C);
+}
+
